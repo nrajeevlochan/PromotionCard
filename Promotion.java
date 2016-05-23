@@ -101,14 +101,11 @@ public class Promotion implements Parcelable {
     public static final Parcelable.Creator<Promotion> CREATOR
             = new Parcelable.Creator<Promotion>() {
 
-        // This simply calls our new constructor (typically private) and
-        // passes along the unmarshalled `Parcel`, and then returns the new object!
         @Override
         public Promotion createFromParcel(Parcel in) {
             return new Promotion(in);
         }
 
-        // We just need to copy this and change the type to match our class.
         @Override
         public Promotion[] newArray(int size) {
             return new Promotion[size];

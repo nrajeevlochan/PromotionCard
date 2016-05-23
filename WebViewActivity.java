@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 
 public class WebViewActivity extends AppCompatActivity {
 
+    private static final String TAG = WebViewActivity.class.getName();
     private WebView mWebView;
     private ProgressBar progressBar;
 
@@ -43,8 +44,6 @@ public class WebViewActivity extends AppCompatActivity {
     private class MyWebClient extends WebViewClient {
 
         public MyWebClient() {
-            //this.progressBar=progressBar;
-            //progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override

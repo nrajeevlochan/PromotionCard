@@ -16,6 +16,7 @@ import com.android.volley.toolbox.ImageLoader;
 
 public class SubActivity extends AppCompatActivity {
 
+    private static final String TAG = SubActivity.class.getName();
     private ImageLoader imageLoader;
 
     @Override

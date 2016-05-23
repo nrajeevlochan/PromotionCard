@@ -19,13 +19,15 @@ import java.util.List;
  * Created by ${} on 5/20/16.
  */
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> {
+
+    private static final String TAG = MyRecyclerAdapter.class.getName();
     private List<Promotion> promotionList;
     private ImageLoader imageLoader;
     public OnItemClickListener mItemClickListener;
     private Context context;
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, Promotion promotion, int position);
+        void onItemClick(View view, Promotion promotion, int position);
     }
 
     public MyRecyclerAdapter(List<Promotion> promotionList, Context context, OnItemClickListener onItemClickListener) {
@@ -46,8 +48,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         Promotion promotion = promotionList.get(position);
         holder.title.setText(promotion.getTitle());
 
-
-        //imageLoader = MyVolleyRequest.getInstance(context).getImageLoader();
         imageLoader = MyPromotionCardApplication.getInstance().getImageLoader();
         imageLoader.get(promotion.getImageUrl(), imageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
@@ -78,6 +78,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "Onclick at postion: " + position);
                     listener.onItemClick(v, promotion, position);
                 }
             });

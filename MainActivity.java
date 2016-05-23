@@ -26,9 +26,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getName();
     private RecyclerView mRecyclerView;
     private List<Promotion> promotionList;
-    private MyRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     //This method will get data from the web api
     private void getJsonData(){
+        Log.i(TAG, "getJsonData()");
         //Showing a progress dialog
         final ProgressDialog loading = ProgressDialog.show(this,"Loading Data", "Please wait...",false,false);
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.w("MainActivity", "volly error" + error);
+                        Log.e(TAG, "volly error response" + error);
                     }
                 });
 
@@ -135,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //Adding adapter to recyclerview
         mRecyclerView.setAdapter(new MyRecyclerAdapter(promotionList, this, new MyRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Promotion promotion, int position) {

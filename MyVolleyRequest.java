@@ -2,6 +2,7 @@ package com.promotioncard;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.LruCache;
 
 import com.android.volley.Cache;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.ImageLoader;
  */
 public class MyVolleyRequest {
 
+    private static final String TAG = MyVolleyRequest.class.getName();
     private static MyVolleyRequest myVolleyRequest;
     private static Context context;
     private RequestQueue requestQueue;
@@ -52,6 +54,7 @@ public class MyVolleyRequest {
 
     public RequestQueue getRequestQueue() {
         if (requestQueue == null) {
+            Log.d(TAG, "Request added to queue");
             Cache cache = new DiskBasedCache(context.getCacheDir(), 10 * 1024 * 1024);
             Network network = new BasicNetwork(new HurlStack());
             requestQueue = new RequestQueue(cache, network);
